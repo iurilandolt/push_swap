@@ -6,11 +6,11 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:18:14 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 16:22:16 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:26:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../include/push_swap.h"
 
 static int	ft_isdelimeter(char str, char c)
 {

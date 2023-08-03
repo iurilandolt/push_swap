@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 19:37:37 by rlandolt         ###   ########.fr       */
+/*   Created: 2023/08/03 17:09:47 by rlandolt          #+#    #+#             */
+/*   Updated: 2023/08/03 17:11:19 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
-int main(int argc, char **argv)
+void	ft_putchar_fd(char c, int fd)
 {
-
-
-    if (argc < 2)
-		ft_error("no input");
-    else
-    {
-		argv++;
-        input_error(argv);
-
-
-    }
-    return 0;
+	write(fd, &c, sizeof(char));
 }
 
+void	ft_putstr_fd(char *str, int fd)
+{
+	if (str)
+	{
+		while (*str)
+			ft_putchar_fd(*str++, fd);
+	}
+}
+void	ft_putendl_fd(char *str, int fd)
+{
+	ft_putstr_fd(str, fd);
+	ft_putchar_fd('\n', fd);
+}
 
-/*
-		while (argv)
-        {
-            printf("%s\n", *argv);
-			if(!*(argv + 1))
-				break;
-            argv++;
-        }
-*/
+void	ft_error(char *msg)
+{
+	ft_putendl_fd(msg, 1);
+	exit(0);
+}

@@ -6,29 +6,20 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:19:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 16:27:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:11:38 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../include/push_swap.h"
 
-void	ft_putchar_fd(char c, int fd)
+size_t	ft_strlen(const char *s)
 {
-	write(fd, &c, sizeof(char));
-}
+	size_t	pos;
 
-void	ft_putstr_fd(char *str, int fd)
-{
-	if (str)
-	{
-		while (*str)
-			ft_putchar_fd(*str++, fd);
-	}
-}
-void	ft_putendl_fd(char *str, int fd)
-{
-	ft_putstr_fd(str, fd);
-	ft_putchar_fd('\n', fd);
+	pos = 0;
+	while (*s++)
+		pos++;
+	return (pos);
 }
 
 int	ft_strcmp(char *str1, char *str2)

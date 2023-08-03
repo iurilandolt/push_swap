@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 17:16:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:45:43 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 /* SORT */
 /* STRUCT */
 
+void			print_stack(t_stack_node *lst);
+int				is_sorted(t_stack_node *lst);
 t_stack_node	*new_node(int value, int index);
-t_stack_node *init_stack(char **args);
+t_stack_node 	*init_stack(char **args);
 
 #endif

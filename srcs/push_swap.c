@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 19:37:37 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:47:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main(int argc, char **argv)
 {
-
+	t_stack_node *a;
+	a = NULL;
 
     if (argc < 2)
 		ft_error("no input");
@@ -22,8 +23,8 @@ int main(int argc, char **argv)
     {
 		argv++;
         input_error(argv);
-
-
+		a = init_stack(argv);
+		print_stack(a);
     }
     return 0;
 }

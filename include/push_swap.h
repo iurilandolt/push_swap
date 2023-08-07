@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 18:46:05 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:58:10 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_stack_node
 }	t_stack_node;
 
 /* ACTIONS */
+
+void push_node(t_stack_node **src, t_stack_node **dst, char target);
+
 /* INPUT */
 
 void			ft_putchar_fd(char c, int fd);

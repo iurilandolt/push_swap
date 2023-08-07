@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 18:19:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:46:46 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void print_stack(t_stack_node *lst)
 	t_stack_node	*tmp;
 	int	size;
 
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
 	tmp = lst;
 	size = 0;
 	while (tmp)

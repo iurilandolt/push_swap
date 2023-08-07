@@ -6,7 +6,7 @@
 #    By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/03 16:13:08 by rlandolt          #+#    #+#              #
-#    Updated: 2023/08/03 22:48:35 by rlandolt         ###   ########.fr        #
+#    Updated: 2023/08/07 18:20:06 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = $(SRC_PATH)/push_swap.c \
 	$(INPUT)/strings.c \
 	$(INPUT)/error.c \
 	$(STRUCT)/stacks.c \
+	$(STRUCT)/index.c \
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

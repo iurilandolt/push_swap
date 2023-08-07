@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 22:45:43 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:18:11 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,30 @@ typedef struct s_stack_node
 /* ACTIONS */
 /* INPUT */
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *str, int fd);
-void	ft_putendl_fd(char *str, int fd);
-void	ft_error(char *msg);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char *str, int fd);
+void			ft_putendl_fd(char *str, int fd);
+void			ft_error(char *msg);
 
-int		ft_isdigit(int c);
-int		is_sorted(t_stack_node *lst);
-int		is_nbr(char *str);
-int		input_error(char **array);
-int 	ctoi(const char *nptr);
+int				ft_isdigit(int c);
+int				is_nbr(char *str);
+int				input_error(char **array);
+int 			ctoi(const char *nptr);
 
-char	**ft_split(const char *str, char c);
-
-size_t	ft_strlen(const char *s);
-int		ft_strcmp(char *str1, char *str2);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+char			**ft_split(const char *str, char c);
+size_t			ft_strlen(const char *s);
+int				ft_strcmp(char *str1, char *str2);
+size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 
 /* SORT */
+
 /* STRUCT */
 
 void			print_stack(t_stack_node *lst);
 int				is_sorted(t_stack_node *lst);
+int				is_dupe(t_stack_node *lst);
 t_stack_node	*new_node(int value, int index);
 t_stack_node 	*init_stack(char **args);
+void			free_stack(t_stack_node *ptr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:25:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 23:27:15 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:38:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,16 @@ int	is_nbr(char *str)
 	}
 	return (1);
 }
-/*
-check only if the input is vallid and can be made into a *t_stack_node
-after having a *t_stack_node we can check for dupes and if it sorted
-if it is sorted, free the list.
-*/
+
 int	input_error(char **array)
 {
 	int i;
-	int j;
 
 	i = 0;
 	while(array[i])
 	{
-		j = i + 1;
 		if (!is_nbr(array[i]))
 			ft_error("not a number");
-		while(array[j])
-		{
-			if (ft_strcmp(array[i], array[j]) == 0)
-				ft_error("found dupe");
-			j++;
-		}
 		i++;
 	}
 	return (0);
@@ -110,6 +98,28 @@ int	input_error(char **array)
 		}
 		i++;
 		skip_i = 0;
+	}
+	return (0);
+}
+
+int	input_error(char **array)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(array[i])
+	{
+		j = i + 1;
+		if (!is_nbr(array[i]))
+			ft_error("not a number");
+		while(array[j])
+		{
+			if (ft_strcmp(array[i], array[j]) == 0)
+				ft_error("found dupe");
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }

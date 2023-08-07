@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:19:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 17:11:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:45:11 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (*s++)
 		pos++;
 	return (pos);
-}
-
-int	ft_strcmp(char *str1, char *str2)
-{
-	if (!*str1 || !*str2)
-		return (0);
-	while ((*str1 || *str2) && (*str1 == *str2))
-	{
-		str1++;
-		str2++;
-	}
-	return (*(unsigned char *)str1 - *(unsigned char *)str2);
 }
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)

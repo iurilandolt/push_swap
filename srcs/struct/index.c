@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:19:02 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 18:34:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:47:22 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_dupe(t_stack_node *lst)
 		j = i->next;
 		while (j)
 		{
-			printf("%d vs %d\n", i->value, j->value);
+			//printf("%d vs %d\n", i->value, j->value);
 			if (i->value == j->value)
 				return (1);
 			j = j->next;

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 18:18:11 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:46:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int 			ctoi(const char *nptr);
 
 char			**ft_split(const char *str, char c);
 size_t			ft_strlen(const char *s);
-int				ft_strcmp(char *str1, char *str2);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 
 /* SORT */

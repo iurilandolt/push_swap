@@ -1,0 +1,56 @@
+
+int	input_error(char **array)
+{
+	int i;
+	int j;
+	int skip_i;
+	int skip_j;
+
+	i = 0;
+	skip_i = 0;
+	skip_j = 0;
+	while(array[i])
+	{
+		while (array[i][skip_i] == '0' || array[i][skip_i] == '+')
+			skip_i++;
+		j = i + 1;
+		if (!is_nbr(array[i]))
+			ft_error("not a number");
+
+		while(array[j])
+		{
+			while (array[j][skip_j] == '0' || array[j][skip_j] == '+' )
+				skip_j++;
+			if (ft_strcmp(&array[i][skip_i], &array[j][skip_j]) == 0)
+				ft_error("found dupe");
+			j++;
+			skip_j = 0;
+		}
+		i++;
+		skip_i = 0;
+	}
+	return (0);
+}
+
+int	input_error(char **array)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(array[i])
+	{
+		j = i + 1;
+		if (!is_nbr(array[i]))
+			ft_error("not a number");
+		while(array[j])
+		{
+			if (ft_strcmp(array[i], array[j]) == 0)
+				ft_error("found dupe");
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+

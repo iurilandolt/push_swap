@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 17:50:04 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:14:48 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 typedef struct s_stack_node
 {
@@ -27,6 +28,16 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*previous;
 }	t_stack_node;
+
+typedef struct s_tracker
+{
+	int	moves;
+	int	top;
+	int	med;
+	int	bot;
+
+}t_tracker;
+
 
 /* ACTIONS */
 
@@ -63,7 +74,7 @@ int				is_sorted(t_stack_node *lst);
 int				is_dupe(t_stack_node *lst);
 t_stack_node	*new_node(int value, int index);
 t_stack_node 	*init_stack(char **args);
-void			free_stack(t_stack_node *ptr);
+void			free_stacks(int count, ...);
 void 			re_index(t_stack_node *lst);
 t_stack_node	*get_first(t_stack_node *lst);
 t_stack_node	*get_last(t_stack_node *lst);

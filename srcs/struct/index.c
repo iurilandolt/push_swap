@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:19:02 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 17:50:45 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:35:50 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void re_index(t_stack_node *lst)
 		tmp = tmp->next;
 	}
 }
-
 
 /*
 t_stack_node	*get_first(t_stack_node *lst)

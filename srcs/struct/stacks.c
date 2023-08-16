@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 17:47:52 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:17:22 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_stack_node *init_stack(char **args)
 	return(first);
 }
 
+/*
 void	free_stack(t_stack_node *ptr)
 {
 	t_stack_node	*tmp;
@@ -69,6 +70,33 @@ void	free_stack(t_stack_node *ptr)
 		free(tmp);
 	}
 	ptr = NULL;
+}
+*/
+
+void	free_stacks(int count, ...)
+{
+	va_list args;
+	t_stack_node *ptr;
+	t_stack_node *tmp;
+	t_stack_node *curr;
+	int freed = 0;
+
+	va_start(args, count);
+	while (freed < count)
+	{
+		ptr = va_arg(args, t_stack_node*);
+		if (!ptr)
+			ft_error("Error: failed free call.");
+		curr = ptr;
+		while (curr)
+		{
+			tmp = curr;
+			curr = curr->next;
+			free(tmp);
+		}
+		freed++;
+	}
+	va_end(args);
 }
 
 void print_stack(t_stack_node *lst)

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:19:02 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 18:47:22 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:46:52 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,24 @@ int	is_dupe(t_stack_node *lst)
 		i = i->next;
 	}
 	return (0);
+}
+
+t_stack_node	*get_last(t_stack_node *lst)
+{
+	t_stack_node *tmp;
+
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return(tmp);
+}
+
+t_stack_node	*get_first(t_stack_node *lst)
+{
+	t_stack_node *tmp;
+
+	tmp = lst;
+	while (tmp->previous)
+		tmp = tmp->previous;
+	return(tmp);
 }

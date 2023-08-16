@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 19:46:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:45:46 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,25 @@ void print_stack(t_stack_node *lst)
 	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
 }
 
+void reverse_print(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
 
+
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
+	tmp = get_last(lst);
+	printf("REVERSE PRINT START\n");
+	while (tmp->previous)
+	{
+		printf("Value: %d @ index: %d\n", tmp->value, tmp->index);
+		tmp = tmp->previous;
+
+	}
+	printf("Value: %d @ index: %d\n", tmp->value, tmp->index);
+	printf("REVERSE PRINT END\n");
+
+}

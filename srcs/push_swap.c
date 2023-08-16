@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 11:42:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:51:18 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ int main(int argc, char **argv)
 	b = NULL;
 
     if (argc < 2)
-		ft_error("no input");
+		return(1);
     else
     {
 		argv++;
         if (!input_error(argv))
 		{
 			a = init_stack(argv);
-			b = new_node(99, 99);
-			rotate_ccw(&a);
-			printf("Stack A:\n");
+
+			printf("\n\nStack A:\n");
 			print_stack(a);
 			printf("Stack B:\n");
 			print_stack(b);

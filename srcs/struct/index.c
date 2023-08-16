@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:19:02 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 11:46:52 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:50:45 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,25 @@ t_stack_node	*get_last(t_stack_node *lst)
 	return(tmp);
 }
 
+void re_index(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
+	int	index;
+
+	if (!lst)
+		ft_error("Error: re-indexing failed.");
+	tmp = lst;
+	index = 0;
+	while (tmp)
+	{
+		tmp->index = index;
+		index += 1;
+		tmp = tmp->next;
+	}
+}
+
+
+/*
 t_stack_node	*get_first(t_stack_node *lst)
 {
 	t_stack_node *tmp;
@@ -67,3 +86,4 @@ t_stack_node	*get_first(t_stack_node *lst)
 		tmp = tmp->previous;
 	return(tmp);
 }
+*/

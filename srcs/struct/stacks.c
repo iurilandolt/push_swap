@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 11:45:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:47:52 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack_node	*new_node(int value, int index)
 
 	new = (t_stack_node *)malloc(sizeof(t_stack_node));
 	if (!new)
-		ft_error("failed to allocate node");
+		ft_error("Error: failed to allocate node");
 	new->value = value;
 	new->index = index;
 	new->next = NULL;
@@ -50,7 +50,7 @@ t_stack_node *init_stack(char **args)
 		}
 	}
 	if (is_sorted(first) || is_dupe(first))
-		ft_error("this some bs");
+		ft_error("Error: data already sorted.");
 	return(first);
 }
 
@@ -60,7 +60,7 @@ void	free_stack(t_stack_node *ptr)
 	t_stack_node	*curr;
 
 	if (!ptr)
-		ft_error("free fkep up");
+		ft_error("Error: failed free call.");
 	curr = ptr;
 	while (curr)
 	{
@@ -92,6 +92,7 @@ void print_stack(t_stack_node *lst)
 	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
 }
 
+/*
 void reverse_print(t_stack_node *lst)
 {
 	t_stack_node	*tmp;
@@ -114,3 +115,4 @@ void reverse_print(t_stack_node *lst)
 	printf("REVERSE PRINT END\n");
 
 }
+*/

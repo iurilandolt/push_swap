@@ -6,13 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:54:29 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/07 19:57:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:39:55 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void push_node(t_stack_node **src, t_stack_node **dst, char target)
+static void push_node(t_stack_node **src, t_stack_node **dst)
 {
 	t_stack_node *new;
 
@@ -36,6 +36,13 @@ void push_node(t_stack_node **src, t_stack_node **dst, char target)
 		free((*src)->previous);
 		(*src)->previous = NULL;
 	}
+}
+
+void	push(t_stack_node **src, t_stack_node **dst, char target)
+{
+	if (!(*src))
+		return;
+	push_node(src, dst);
 	if (target == 'a')
 		ft_putendl_fd("pa", 1);
 	if (target == 'b')

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 11:47:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:50:04 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ typedef struct s_stack_node
 
 /* ACTIONS */
 
-void	push_node(t_stack_node **src, t_stack_node **dst, char target);
-void	swap(t_stack_node *lst);
-void	rotate_cw(t_stack_node **lst);
-void	rotate_ccw(t_stack_node **lst);
+
+void	swap(t_stack_node *lst, char target);
+void	rotate_cw(t_stack_node **lst, char target);
+void	rotate_ccw(t_stack_node **lst, char target);
+void	rotate_all_cw(t_stack_node **lst_a, t_stack_node **lst_b);
+void	rotate_all_ccw(t_stack_node **lst_a, t_stack_node **lst_b);
+void	push(t_stack_node **src, t_stack_node **dst, char target);
 
 /* INPUT */
 
@@ -61,6 +64,7 @@ int				is_dupe(t_stack_node *lst);
 t_stack_node	*new_node(int value, int index);
 t_stack_node 	*init_stack(char **args);
 void			free_stack(t_stack_node *ptr);
+void 			re_index(t_stack_node *lst);
 t_stack_node	*get_first(t_stack_node *lst);
 t_stack_node	*get_last(t_stack_node *lst);
 

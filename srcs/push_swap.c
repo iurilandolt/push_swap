@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 20:19:05 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:23:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int	stack_size(t_stack_node *lst)
 	}
 	return(size);
 }
-int	sort_3(t_stack_node **lst)
+void	sort_3(t_stack_node **lst)
 {
 	t_tracker tmp;
 
-	tmp.moves = 0;
 	tmp.top = (*lst)->value;
 	tmp.med = (*lst)->next->value;
 	tmp.bot = (*lst)->next->next->value;
@@ -52,7 +51,23 @@ int	sort_3(t_stack_node **lst)
 	}
 	if (tmp.top < tmp.med && tmp.top > tmp.bot && tmp.med > tmp.bot)
 		rotate_cw(lst, 'a');
-	return(tmp.moves);
+}
+
+void	sort_5(t_stack_node **lst)
+{
+	t_stack_node *b;
+
+	b = NULL;
+	push(lst, &b, 'b');
+	push(lst, &b, 'b');
+	sort_3(lst);
+
+
+
+	printf("\n\nStack A:\n");
+	print_stack(*lst);
+	printf("Stack B:\n");
+	print_stack(b);
 }
 
 int main(int argc, char **argv)
@@ -73,12 +88,15 @@ int main(int argc, char **argv)
 
 			if (stack_size(a) == 3)
 				sort_3(&a);
-
+			if (stack_size(a) == 5)
+				sort_5(&a);
+/*
 			printf("\n\nStack A:\n");
 			print_stack(a);
 			printf("Stack B:\n");
 			print_stack(b);
 
+*/
 			free_stacks(2, a, b);
 		}
     }

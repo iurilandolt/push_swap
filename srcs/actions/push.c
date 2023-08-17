@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:54:29 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 17:39:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:26:13 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	push(t_stack_node **src, t_stack_node **dst, char target)
 		ft_putendl_fd("pa", 1);
 	if (target == 'b')
 		ft_putendl_fd("pb", 1);
+	re_index(*src);
+	re_index(*dst);
 }

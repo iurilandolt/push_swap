@@ -6,32 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:49:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 19:24:34 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/17 23:17:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
 void	rotate_cw(t_stack_node **lst, char target)
-{
-	t_stack_node	*last;
-
-	if (!(*lst) || !(*lst)->next)
-		return;
-	last = get_last(*lst);
-	last->previous->next = NULL;
-	last->next = (*lst);
-	(*lst)->previous = last;
-	(*lst) = last;
-	(*lst)->previous = NULL;
-	if (target == 'a')
-		ft_putendl_fd("rra", 1);
-	if (target == 'b')
-		ft_putendl_fd("rrb", 1);
-	re_index(*lst);
-}
-
-void	rotate_ccw(t_stack_node **lst, char target)
 {
 	t_stack_node	*first;
 	t_stack_node	*last;
@@ -49,6 +30,25 @@ void	rotate_ccw(t_stack_node **lst, char target)
 		ft_putendl_fd("ra", 1);
 	if (target == 'b')
 		ft_putendl_fd("rb", 1);
+	re_index(*lst);
+}
+
+void	rotate_ccw(t_stack_node **lst, char target)
+{
+	t_stack_node	*last;
+
+	if (!(*lst) || !(*lst)->next)
+		return;
+	last = get_last(*lst);
+	last->previous->next = NULL;
+	last->next = (*lst);
+	(*lst)->previous = last;
+	(*lst) = last;
+	(*lst)->previous = NULL;
+	if (target == 'a')
+		ft_putendl_fd("rra", 1);
+	if (target == 'b')
+		ft_putendl_fd("rrb", 1);
 	re_index(*lst);
 }
 

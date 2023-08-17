@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stacks.c                                           :+:      :+:    :+:   */
+/*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/16 18:17:22 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/18 00:00:57 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,25 @@ t_stack_node *init_stack(char **args)
 		}
 	}
 	if (is_sorted(first) || is_dupe(first))
-		ft_error("Error: data already sorted.");
+		ft_error("Error: data duplicated or already sorted.");
 	return(first);
+}
+
+int	stack_size(t_stack_node *lst)
+{
+	t_stack_node *tmp;
+	int	size;
+
+	if (!lst)
+		return(0);
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return(size);
 }
 
 /*
@@ -109,15 +126,19 @@ void print_stack(t_stack_node *lst)
 		ft_putendl_fd("stack not found", 1);
 		return;
 	}
+	printf("+-------+----------+-------+--------+\n");
+    printf("| Index | Value    | Level | Cost   |\n");
+    printf("+-------+----------+-------+--------+\n");
 	tmp = lst;
 	size = 0;
 	while (tmp)
 	{
-		printf("Value: %d @ index: %d\n", tmp->value, tmp->index);
+		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->index, tmp->value, tmp->level, tmp->cost);
 		tmp = tmp->next;
 		size += 1;
 	}
-	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
+	printf("+-------+----------+-------+--------+\n");
+    printf("Stack index: %d\nStack size: %d\n", lst->index, size);
 }
 
 /*

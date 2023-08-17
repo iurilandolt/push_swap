@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 23:57:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/18 00:30:20 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int main(int argc, char **argv)
 			if (stack_size(a) == 5)
 				sort_5(&a);
 */
-			re_factor(a);
+			re_factor(a); // replace re_index in actions by re_factor
+
 			printf("\n\nStack A:\n");
 			print_stack(a);
 			printf("Stack B:\n");

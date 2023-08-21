@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/21 14:36:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:42:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_stack_node *init_stack(char **args)
 		}
 	}
 	if (is_sorted(first) || is_dupe(first))
-		ft_error("Error: data duplicated or already sorted.");
+		ft_error("Error");
 	re_factor(first);
 	return(first);
 }
@@ -104,7 +104,7 @@ void	free_stacks(int count, ...)
 	{
 		ptr = va_arg(args, t_stack_node*);
 		if (!ptr)
-			ft_error("Error: failed free call.");
+			return;
 		curr = ptr;
 		while (curr)
 		{

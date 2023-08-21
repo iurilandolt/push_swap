@@ -6,7 +6,7 @@
 #    By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/03 16:13:08 by rlandolt          #+#    #+#              #
-#    Updated: 2023/08/17 23:18:55 by rlandolt         ###   ########.fr        #
+#    Updated: 2023/08/21 17:32:55 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INPUT = $(SRC_PATH)/input
 SORT = $(SRC_PATH)/sort
 STRUCT = $(SRC_PATH)/struct
 
-SRC = $(SRC_PATH)/push_swap.c \
+SRC = push_swap.c \
 	$(INPUT)/process.c \
 	$(INPUT)/split.c \
 	$(INPUT)/strings.c \

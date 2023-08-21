@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:33:59 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/21 15:55:28 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:51:38 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,24 @@ void	sort_5(t_stack_node **lst)
 	{
 		if (b->next && b->value < b->next->value)
 			swap(b, 'b');
-		if (b->value < (*lst)->value)
+		if (b->value < (*lst)->value || b->value > get_last(*lst)->value)
 			push(&b, lst, 'a');
 		else
-			rotate_cw(lst, 'a');
+			while ((*lst) != get_highest_value_node(*lst))
+			{
+				if (get_highest_value_node(*lst)->level == 1)
+					rotate_ccw(lst, 'a');
+				else
+					rotate_cw(lst, 'a');
+			}
 	}
 	marker = get_lowest_value_node(*lst);
 	while ((*lst) != get_lowest_value_node(*lst))
 	{
-		if (marker->level == 0 || marker->level == -1)
-			rotate_cw(lst, 'a');
-		else
+		if (marker->level == 1)
 			rotate_ccw(lst, 'a');
+		else
+			rotate_cw(lst, 'a');
 	}
+
 }

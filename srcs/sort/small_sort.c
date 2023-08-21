@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:33:59 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 20:18:27 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:55:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	sort_3(t_stack_node **lst)
 	tmp.top = (*lst)->value;
 	tmp.med = (*lst)->next->value;
 	tmp.bot = (*lst)->next->next->value;
-	if (tmp.top > tmp.med && tmp.med < tmp.bot && tmp.top < tmp.bot)
+	if (tmp.top > tmp.med && tmp.med < tmp.bot && tmp.bot > tmp.top)
 		swap(*lst, 'a');
 	if (tmp.top > tmp.med && tmp.med > tmp.bot && tmp.bot < tmp.top)
 	{
 		swap(*lst, 'a');
-		rotate_cw(lst, 'a');
-	}
-	if (tmp.top > tmp.med && tmp.top > tmp.bot && tmp.med < tmp.bot)
 		rotate_ccw(lst, 'a');
+	}
+	if (tmp.top > tmp.med && tmp.med < tmp.bot && tmp.bot < tmp.top)
+		rotate_cw(lst, 'a');
 	if (tmp.top < tmp.med && tmp.med > tmp.bot && tmp.bot > tmp.top)
 	{
 		swap(*lst, 'a');
-		rotate_ccw(lst, 'a');
-	}
-	if (tmp.top < tmp.med && tmp.top > tmp.bot && tmp.med > tmp.bot)
 		rotate_cw(lst, 'a');
+	}
+	if (tmp.top < tmp.med && tmp.med > tmp.bot && tmp.bot < tmp.top)
+		rotate_ccw(lst, 'a');
 }
 
 
@@ -42,17 +42,27 @@ void	sort_3(t_stack_node **lst)
 void	sort_5(t_stack_node **lst)
 {
 	t_stack_node *b;
-	//t_tracker tmp;
+	t_stack_node *marker;
 
 	b = NULL;
 	push(lst, &b, 'b');
 	push(lst, &b, 'b');
 	sort_3(lst);
-
-
-
-	printf("\n\nStack A:\n");
-	print_stack(*lst);
-	printf("Stack B:\n");
-	print_stack(b);
+	while (b)
+	{
+		if (b->next && b->value < b->next->value)
+			swap(b, 'b');
+		if (b->value < (*lst)->value)
+			push(&b, lst, 'a');
+		else
+			rotate_cw(lst, 'a');
+	}
+	marker = get_lowest_value_node(*lst);
+	while ((*lst) != get_lowest_value_node(*lst))
+	{
+		if (marker->level == 0 || marker->level == -1)
+			rotate_cw(lst, 'a');
+		else
+			rotate_ccw(lst, 'a');
+	}
 }

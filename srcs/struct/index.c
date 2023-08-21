@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:19:02 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 23:52:50 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:55:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void re_index(t_stack_node *lst)
 	int	index;
 
 	if (!lst)
-		ft_error("Error: re-indexing failed.");
+		return;
 	tmp = lst;
 	index = 0;
 	while (tmp)

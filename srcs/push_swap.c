@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/18 00:30:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:32:43 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int main(int argc, char **argv)
 
 
 
-/*
-			if (stack_size(a) == 3)
-				sort_3(&a);
+
+			//if (stack_size(a) == 3)
+				//sort_3(&a);
 			if (stack_size(a) == 5)
 				sort_5(&a);
-*/
-			re_factor(a); // replace re_index in actions by re_factor
 
-			printf("\n\nStack A:\n");
+			printf("\n\nStack A/ END PROGRAM:\n");
 			print_stack(a);
+/*
+
 			printf("Stack B:\n");
 			print_stack(b);
-
+*/
 
 			free_stacks(2, a, b);
 		}

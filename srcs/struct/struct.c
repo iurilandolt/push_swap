@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/18 00:00:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:36:23 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_stack_node *init_stack(char **args)
 	}
 	if (is_sorted(first) || is_dupe(first))
 		ft_error("Error: data duplicated or already sorted.");
+	re_factor(first);
 	return(first);
 }
 
@@ -127,13 +128,13 @@ void print_stack(t_stack_node *lst)
 		return;
 	}
 	printf("+-------+----------+-------+--------+\n");
-    printf("| Index | Value    | Level | Cost   |\n");
+    printf("| Value | Index    | Level | Cost   |\n");
     printf("+-------+----------+-------+--------+\n");
 	tmp = lst;
 	size = 0;
 	while (tmp)
 	{
-		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->index, tmp->value, tmp->level, tmp->cost);
+		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost);
 		tmp = tmp->next;
 		size += 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:49:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 23:17:31 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:32:32 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	rotate_cw(t_stack_node **lst, char target)
 		ft_putendl_fd("ra", 1);
 	if (target == 'b')
 		ft_putendl_fd("rb", 1);
-	re_index(*lst);
+	re_factor(*lst);
 }
 
 void	rotate_ccw(t_stack_node **lst, char target)
@@ -49,7 +49,7 @@ void	rotate_ccw(t_stack_node **lst, char target)
 		ft_putendl_fd("rra", 1);
 	if (target == 'b')
 		ft_putendl_fd("rrb", 1);
-	re_index(*lst);
+	re_factor(*lst);
 }
 
 void	rotate_all_cw(t_stack_node **lst_a, t_stack_node **lst_b)

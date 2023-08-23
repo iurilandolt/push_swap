@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 23:55:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:59:41 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_tracker
 /* ACTIONS */
 
 void			swap(t_stack_node *lst, char target);
-void			rotate_cw(t_stack_node **lst, char target);
-void			rotate_ccw(t_stack_node **lst, char target);
-void			rotate_all_cw(t_stack_node **lst_a, t_stack_node **lst_b);
-void			rotate_all_ccw(t_stack_node **lst_a, t_stack_node **lst_b);
+void			rotate(t_stack_node **lst, char target);
+void			reverse_rotate(t_stack_node **lst, char target);
+void			rotate_all(t_stack_node **lst_a, t_stack_node **lst_b);
+void			reverse_rotate_all(t_stack_node **lst_a, t_stack_node **lst_b);
 void			push(t_stack_node **src, t_stack_node **dst, char target);
 
 /* INPUT */
@@ -70,8 +70,7 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 
 /* SORT */
 
-void			sort_3(t_stack_node **lst);
-void			sort_5(t_stack_node **lst);
+void	small_sort(t_stack_node **lst);
 
 /* STRUCT */
 
@@ -87,6 +86,7 @@ t_stack_node	*get_first(t_stack_node *lst);
 t_stack_node	*get_last(t_stack_node *lst);
 t_stack_node	*get_lowest_value_node(t_stack_node *lst);
 t_stack_node	*get_highest_value_node(t_stack_node *lst);
+void			 set_best_target(t_stack_node *lst_a, t_stack_node *lst_b);
 
 
 #endif

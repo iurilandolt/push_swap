@@ -6,13 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:49:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/21 15:32:32 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:18:04 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	rotate_cw(t_stack_node **lst, char target)
+void	rotate(t_stack_node **lst, char target)
 {
 	t_stack_node	*first;
 	t_stack_node	*last;
@@ -33,7 +33,7 @@ void	rotate_cw(t_stack_node **lst, char target)
 	re_factor(*lst);
 }
 
-void	rotate_ccw(t_stack_node **lst, char target)
+void	reverse_rotate(t_stack_node **lst, char target)
 {
 	t_stack_node	*last;
 
@@ -54,14 +54,14 @@ void	rotate_ccw(t_stack_node **lst, char target)
 
 void	rotate_all_cw(t_stack_node **lst_a, t_stack_node **lst_b)
 {
-	rotate_cw(lst_a, 'x');
-	rotate_cw(lst_b, 'x');
-	ft_putendl_fd("rrr", 1);
+	rotate(lst_a, 'x');
+	rotate(lst_b, 'x');
+	ft_putendl_fd("rr", 1);
 }
 
-void	rotate_all_ccw(t_stack_node **lst_a, t_stack_node **lst_b)
+void	reverse_rotate_all(t_stack_node **lst_a, t_stack_node **lst_b)
 {
-	rotate_cw(lst_a, 'x');
-	rotate_cw(lst_b, 'x');
+	reverse_rotate(lst_a, 'x');
+	reverse_rotate(lst_b, 'x');
 	ft_putendl_fd("rr", 1);
 }

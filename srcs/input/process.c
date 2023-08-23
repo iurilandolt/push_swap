@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:25:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/17 23:52:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:41:50 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	input_error(char **array)
 	while(array[i])
 	{
 		if (!is_nbr(array[i]))
-			ft_error("not a number");
+			ft_error("Error");
 		i++;
 	}
 	return (0);
@@ -98,7 +98,7 @@ int ctoi(const char *nptr)
 	{
 		n = n * 10 + (*nptr++ - '0');
 		if (n * sign > INT_MAX || n * sign < INT_MIN)
-			ft_error("over limits");
+			ft_error("Error");
 	}
 	return (n * sign);
 }

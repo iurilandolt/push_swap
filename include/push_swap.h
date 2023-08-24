@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/23 15:59:41 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:09:18 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,20 @@ typedef struct s_stack_node
 	struct s_stack_node *target;
 }	t_stack_node;
 
-typedef struct s_tracker
+typedef struct i_tracker
 {
 	int	top;
 	int	med;
 	int	bot;
 
-}t_tracker;
+}int_tracker;
+
+typedef struct n_tracker
+{
+	t_stack_node *node_a;
+	t_stack_node *node_b;
+
+}node_tracker;
 
 
 /* ACTIONS */
@@ -87,6 +94,5 @@ t_stack_node	*get_last(t_stack_node *lst);
 t_stack_node	*get_lowest_value_node(t_stack_node *lst);
 t_stack_node	*get_highest_value_node(t_stack_node *lst);
 void			 set_best_target(t_stack_node *lst_a, t_stack_node *lst_b);
-
 
 #endif

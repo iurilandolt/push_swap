@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:33:59 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/23 16:00:03 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:30:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_3(t_stack_node **lst)
 {
-	t_tracker tmp;
+	int_tracker tmp;
 
 	tmp.top = (*lst)->value;
 	tmp.med = (*lst)->next->value;
@@ -36,7 +36,7 @@ void	sort_3(t_stack_node **lst)
 	if (tmp.top < tmp.med && tmp.med > tmp.bot && tmp.bot < tmp.top)
 		reverse_rotate(lst, 'a');
 }
-
+/*make sure level is <= or just < 0?*/
 void	sort_4_5(t_stack_node **lst)
 {
 	t_stack_node *b;
@@ -48,18 +48,10 @@ void	sort_4_5(t_stack_node **lst)
 	sort_3(lst);
 	while (b)
 	{
-		//printf("Stack B:\n");
-		//print_stack(b);
-		//printf("Stack A:\n");
-		//print_stack(*lst);
 		set_best_target(*lst, b);
-		//if (b->next && b->next->value > b->value)
-			//swap(b, 'b');
 		if ((*lst) == b->target)
-		{
 			push(&b, lst, 'a');
-		}
-		else if((*lst)->level < 0)
+		else if((*lst)->level <= 0)
 			rotate(lst, 'a');
 		else
 			reverse_rotate(lst, 'a');
@@ -72,7 +64,6 @@ void	sort_4_5(t_stack_node **lst)
 		else
 			rotate(lst, 'a');
 	}
-
 }
 
 void	small_sort(t_stack_node **lst)
@@ -82,7 +73,6 @@ void	small_sort(t_stack_node **lst)
 			if ((*lst)->value > (*lst)->next->value)
 				swap(*lst, 'a');
 		}
-
 		else if (stack_size(*lst) == 3)
 			sort_3(lst);
 		else
@@ -90,27 +80,34 @@ void	small_sort(t_stack_node **lst)
 }
 
 /*
-void set_best_target(t_stack_node *lst_a, t_stack_node *lst_b)
+void	sort_4_5(t_stack_node **lst)
 {
-	int	dif;
-	int min_dif;
+	t_stack_node *b;
+	t_stack_node *marker;
 
-	dif = lst_a->value - lst_b->value;
-	min_dif = dif;
-	lst_b->target = lst_a;
-	while (lst_b)
+	b = NULL;
+	while (stack_size(*lst) > 3)
+			push(lst, &b, 'b');
+	sort_3(lst);
+	while (b)
 	{
-		while (lst_a)
-		{
-			dif = lst_a->value - lst_b->value;
-			if (dif < 0 && dif < min_dif)
-				{
-					min_dif = dif;
-					lst_b->target = lst_a;
-				}
-			lst_a = lst_a->next;
-		}
-		lst_b = lst_b->next;
+		set_best_target(*lst, b);
+		//if (b->next && b->next->value > b->value)
+			//swap(b, 'b');
+		if ((*lst) == b->target)
+			push(&b, lst, 'a');
+		else if((*lst)->level < 0)
+			rotate(lst, 'a');
+		else
+			reverse_rotate(lst, 'a');
+	}
+	marker = get_lowest_value_node(*lst);
+	while ((*lst) != get_lowest_value_node(*lst))
+	{
+		if (marker->level == 1)
+			reverse_rotate(lst, 'a');
+		else
+			rotate(lst, 'a');
 	}
 }
 */

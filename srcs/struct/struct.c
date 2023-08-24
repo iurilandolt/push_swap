@@ -6,11 +6,20 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/23 15:47:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:15:40 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+void	check_stack(t_stack_node *lst)
+{
+	if (is_sorted(lst))
+		ft_error("");
+	if (is_dupe(lst))
+		ft_error("Error");
+	re_factor(lst);
+}
 
 t_stack_node	*new_node(int value, int index)
 {
@@ -49,122 +58,27 @@ t_stack_node *init_stack(char **args)
 			last = new;
 		}
 	}
-	if (is_sorted(first))
-		ft_error("");
-	if (is_dupe(first))
-		ft_error("Error");
-	re_factor(first);
+	check_stack(first);
 	return(first);
 }
 
-int	stack_size(t_stack_node *lst)
+int ctoi(const char *nptr)
 {
-	t_stack_node *tmp;
-	int	size;
+	long int n;
+	int sign;
 
-	if (!lst)
-		return(0);
-	tmp = lst;
-	size = 0;
-	while (tmp)
+	sign = 1;
+	n = 0;
+	while ((*nptr >= '\t' && *nptr <= '\r') || *nptr == ' ')
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
+		if (*nptr++ == '-')
+			sign = -1;
+	while (ft_isdigit(*nptr))
 	{
-		size++;
-		tmp = tmp->next;
+		n = n * 10 + (*nptr++ - '0');
+		if (n * sign > INT_MAX || n * sign < INT_MIN)
+			ft_error("Error");
 	}
-	return(size);
+	return (n * sign);
 }
-
-/*
-void	free_stack(t_stack_node *ptr)
-{
-	t_stack_node	*tmp;
-	t_stack_node	*curr;
-
-	if (!ptr)
-		ft_error("Error: failed free call.");
-	curr = ptr;
-	while (curr)
-	{
-		tmp = curr;
-		curr = curr->next;
-		free(tmp);
-	}
-	ptr = NULL;
-}
-*/
-
-void	free_stacks(int count, ...)
-{
-	va_list args;
-	t_stack_node *ptr;
-	t_stack_node *tmp;
-	t_stack_node *curr;
-	int freed = 0;
-
-	va_start(args, count);
-	while (freed < count)
-	{
-		ptr = va_arg(args, t_stack_node*);
-		if (!ptr)
-			return;
-		curr = ptr;
-		while (curr)
-		{
-			tmp = curr;
-			curr = curr->next;
-			free(tmp);
-		}
-		freed++;
-	}
-	va_end(args);
-}
-
-void print_stack(t_stack_node *lst)
-{
-	t_stack_node	*tmp;
-	int	size;
-
-	if (!lst)
-	{
-		ft_putendl_fd("stack not found", 1);
-		return;
-	}
-	printf("+-------+----------+-------+--------+\n");
-    printf("| Value | Index    | Level | Cost   |\n");
-    printf("+-------+----------+-------+--------+\n");
-	tmp = lst;
-	size = 0;
-	while (tmp)
-	{
-		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost);
-		tmp = tmp->next;
-		size += 1;
-	}
-	printf("+-------+----------+-------+--------+\n");
-    printf("Stack index: %d\nStack size: %d\n", lst->index, size);
-}
-
-/*
-void reverse_print(t_stack_node *lst)
-{
-	t_stack_node	*tmp;
-
-
-	if (!lst)
-	{
-		ft_putendl_fd("stack not found", 1);
-		return;
-	}
-	tmp = get_last(lst);
-	printf("REVERSE PRINT START\n");
-	while (tmp->previous)
-	{
-		printf("Value: %d @ index: %d\n", tmp->value, tmp->index);
-		tmp = tmp->previous;
-
-	}
-	printf("Value: %d @ index: %d\n", tmp->value, tmp->index);
-	printf("REVERSE PRINT END\n");
-
-}
-*/

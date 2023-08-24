@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:47:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/23 15:59:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:18:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	calculate_moves(t_stack_node *lst)
 	int	moves;
 
 	moves = 0;
-	if (lst->level < 0)
+	if (lst->level <= 0)
 	{
 		while(lst != get_first(lst))
 		{
@@ -25,13 +25,14 @@ int	calculate_moves(t_stack_node *lst)
 			moves++;
 		}
 	}
-	if (lst->level >= 0)
+	if (lst->level > 0)
 	{
 		while(lst != get_last(lst))
 		{
 			lst = lst->next;
 			moves++;
 		}
+		moves += 1;
 	}
 	return(moves);
 }
@@ -66,7 +67,7 @@ void	set_node_cost(t_stack_node *lst)
 	}
 }
 
-void set_best_target(t_stack_node *lst_a, t_stack_node *lst_b)
+void	set_best_target(t_stack_node *lst_a, t_stack_node *lst_b)
 {
 	t_stack_node *marker;
 	int dif;

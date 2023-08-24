@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 21:00:22 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:51:15 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,20 @@ void	big_sort(t_stack_node **lst)
 	{
 		reset_targets((*lst), b);
 		optimal = get_optimal_b(*lst, b);
+
 		while (b != optimal)
 		{
-			if ((optimal->index != 0 && optimal->target->index != 0
-				&& (optimal->level <= 0 && optimal->target->level <= 0)))
+			if ((optimal->index != 0 && optimal->target->index != 0) && optimal->level <= 0)
 					rotate_all(lst, &b);
-			//if ((optimal->index != 0 && optimal->target->index != 0
-				//&& (optimal->level > 0 && optimal->target->level > 0)))
+			//else if ((optimal->index != 0 && optimal->target->index != 0) && optimal->level > 0)
 					//reverse_rotate_all(lst, &b);
 			else if(optimal->level <= 0)
 				rotate(&b, 'b');
 			else
 				reverse_rotate(&b, 'b');
 		}
-		if ((*lst) == b->target)
+
+		if ((*lst) == b->target && b == optimal)
 			push(&b, lst, 'a');
 		else if((*lst)->level <= 0)
 			rotate(lst, 'a');
@@ -182,12 +182,3 @@ int main(int argc, char **argv)
 }
 
 
-/*
-		while (argv)
-        {
-            printf("%s\n", *argv);
-			if(!*(argv + 1))
-				break;
-            argv++;
-        }
-*/

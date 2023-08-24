@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 16:13:32 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:00:22 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	get_min_combined_cost(t_stack_node *lst_a, t_stack_node *lst_b)
 	return(combined_cost);
 }
 
-t_stack_node *king_of_the_hill(t_stack_node *lst_a, t_stack_node *lst_b)
+t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 {
 	int				min_combined_cost;
 	t_stack_node	*marker;
@@ -74,7 +74,6 @@ t_stack_node *king_of_the_hill(t_stack_node *lst_a, t_stack_node *lst_b)
 				{
 					min_combined_cost = get_min_combined_cost(marker, lst_b);
 					king = lst_b;
-					printf("new minimum combined cost set from node %d with node %d\n", lst_b->value, marker->value);
 				}
 			marker = marker->next;
 		}
@@ -83,19 +82,58 @@ t_stack_node *king_of_the_hill(t_stack_node *lst_a, t_stack_node *lst_b)
 	return(king);
 }
 
+int	can_rotate(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_first(lst))
+	{
+		lst = lst->previous;
+		moves++;
+	}
+	return(moves);
+}
+
+int	can_reverse_rotate(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_last(lst))
+	{
+		lst = lst->next;
+		moves++;
+	}
+	return(moves);
+}
 
 void	big_sort(t_stack_node **lst)
 {
 	t_stack_node *b;
 	t_stack_node *marker;
+	t_stack_node *optimal;
 
 	b = NULL;
 	while (stack_size(*lst) > 3)
 		push(lst, &b, 'b');
-
 	while (b)
 	{
 		reset_targets((*lst), b);
+		optimal = get_optimal_b(*lst, b);
+		while (b != optimal)
+		{
+			if ((optimal->index != 0 && optimal->target->index != 0
+				&& (optimal->level <= 0 && optimal->target->level <= 0)))
+					rotate_all(lst, &b);
+			//if ((optimal->index != 0 && optimal->target->index != 0
+				//&& (optimal->level > 0 && optimal->target->level > 0)))
+					//reverse_rotate_all(lst, &b);
+			else if(optimal->level <= 0)
+				rotate(&b, 'b');
+			else
+				reverse_rotate(&b, 'b');
+		}
 		if ((*lst) == b->target)
 			push(&b, lst, 'a');
 		else if((*lst)->level <= 0)
@@ -111,13 +149,6 @@ void	big_sort(t_stack_node **lst)
 		else
 			rotate(lst, 'a');
 	}
-
-
-
-	//printf("king node is : %d\n", king_of_the_hill(*lst, b)->value);
-	//printf("Stack B:\n");
-	//print_stack_targets(b);
-
 }
 
 int main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/25 13:02:25 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/25 13:47:00 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,40 @@ t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 		}
 		lst_b = lst_b->next;
 	}
+
 	return(optimal);
 }
+
 
 void	big_sort(t_stack_node **lst)
 {
 	t_stack_node *b;
 	t_stack_node *marker;
-	//t_stack_node *optimal;
+	t_stack_node *optimal;
 
 	b = NULL;
 	while (stack_size(*lst) > 3)
 		push(lst, &b, 'b');
+
 	small_sort(lst);
 	while (b)
 	{
-		set_best_target((*lst), b);
-		//optimal = get_optimal_b(*lst, b);
+		reset_targets((*lst), b);
+		optimal = get_optimal_b(*lst, b);
+		while (b != optimal)
+		{
+
+			//rotate_all(lst, &b);
+
+			//reverse_rotate_all(lst, &b);
+
+			if(optimal->level <= 0)
+				rotate(&b, 'b');
+			else
+				reverse_rotate(&b, 'b');
+		}
+
+
 		while ((*lst) != b->target)
 		{
 			if(b->target->level <= 0)
@@ -103,14 +120,13 @@ void	big_sort(t_stack_node **lst)
 			else
 				reverse_rotate(lst, 'a');
 		}
-		//if ((*lst) == b->target)
 		push(&b, lst, 'a');
 	}
 
 	marker = get_lowest_value_node(*lst);
 	while ((*lst) != get_lowest_value_node(*lst))
 	{
-		if (marker->level >= 0)
+		if (marker->level > 0)
 			reverse_rotate(lst, 'a');
 		else
 			rotate(lst, 'a');
@@ -142,8 +158,8 @@ int main(int argc, char **argv)
 				small_sort(&a);
 			else
 				big_sort(&a);
-			printf("\n\nStack A/ END PROGRAM:\n");
-			print_stack(a);
+			//printf("\n\nStack A/ END PROGRAM:\n");
+			//print_stack(a);
 			//printf("Stack B:\n");
 			//print_stack(b);
 			free_stacks(2, a, b);

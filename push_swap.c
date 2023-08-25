@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/25 12:07:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/25 13:02:25 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	reset_targets(t_stack_node *lst_a, t_stack_node *lst_b)
 int	get_min_combined_cost(t_stack_node *lst_a, t_stack_node *lst_b)
 {
 	int	combined_cost;
-	if (!lst_a && !lst_b)
+	if (!lst_a || !lst_b)
 		return (-1);
 	combined_cost = lst_a->cost + lst_b->cost;
 	return(combined_cost);
@@ -60,10 +60,10 @@ t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 {
 	int				min_combined_cost;
 	t_stack_node	*marker;
-	t_stack_node	*king;
+	t_stack_node	*optimal;
 
 	min_combined_cost = INT_MAX;
-	king = lst_b;
+	optimal = lst_b;
 	while (lst_b)
 	{
 		marker = lst_a;
@@ -73,54 +73,40 @@ t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 				if (get_min_combined_cost(marker, lst_b) < min_combined_cost)
 				{
 					min_combined_cost = get_min_combined_cost(marker, lst_b);
-					king = lst_b;
+					optimal = lst_b;
 				}
 			marker = marker->next;
 		}
 		lst_b = lst_b->next;
 	}
-	return(king);
+	return(optimal);
 }
 
 void	big_sort(t_stack_node **lst)
 {
 	t_stack_node *b;
 	t_stack_node *marker;
-	t_stack_node *optimal;
+	//t_stack_node *optimal;
 
 	b = NULL;
 	while (stack_size(*lst) > 3)
 		push(lst, &b, 'b');
-
+	small_sort(lst);
 	while (b)
 	{
-		reset_targets((*lst), b);
-		optimal = get_optimal_b(*lst, b);
-
-		printf("\n\nStack A:\n");
-		print_stack(*lst);
-		printf("Stack B:\n");
-		print_stack_targets(b);
-
-		while (b != optimal)
+		set_best_target((*lst), b);
+		//optimal = get_optimal_b(*lst, b);
+		while ((*lst) != b->target)
 		{
-			if ((optimal->index != 0 && optimal->target->index != 0) && optimal->level <= 0)
-					rotate_all(lst, &b);
-			//else if ((optimal->index != 0 && optimal->target->index != 0) && optimal->level > 0)
-					//reverse_rotate_all(lst, &b);
-			else if(optimal->level >= 0)
-				reverse_rotate(&b, 'b');
+			if(b->target->level <= 0)
+				rotate(lst, 'a');
 			else
-				rotate(&b, 'b');
+				reverse_rotate(lst, 'a');
 		}
-
-		if ((*lst) == b->target && b == optimal)
-			push(&b, lst, 'a');
-		else if((*lst)->level < 0)
-			rotate(lst, 'a');
-		else
-			reverse_rotate(lst, 'a');
+		//if ((*lst) == b->target)
+		push(&b, lst, 'a');
 	}
+
 	marker = get_lowest_value_node(*lst);
 	while ((*lst) != get_lowest_value_node(*lst))
 	{
@@ -130,6 +116,11 @@ void	big_sort(t_stack_node **lst)
 			rotate(lst, 'a');
 	}
 }
+
+		//printf("\n\nStack A:\n");
+		//print_stack(*lst);
+		//printf("Stack B:\n");
+		//print_stack_targets(b);
 
 int main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 21:51:15 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:07:38 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,32 +82,6 @@ t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 	return(king);
 }
 
-int	can_rotate(t_stack_node *lst)
-{
-	int	moves;
-
-	moves = 0;
-	while(lst != get_first(lst))
-	{
-		lst = lst->previous;
-		moves++;
-	}
-	return(moves);
-}
-
-int	can_reverse_rotate(t_stack_node *lst)
-{
-	int	moves;
-
-	moves = 0;
-	while(lst != get_last(lst))
-	{
-		lst = lst->next;
-		moves++;
-	}
-	return(moves);
-}
-
 void	big_sort(t_stack_node **lst)
 {
 	t_stack_node *b;
@@ -117,10 +91,16 @@ void	big_sort(t_stack_node **lst)
 	b = NULL;
 	while (stack_size(*lst) > 3)
 		push(lst, &b, 'b');
+
 	while (b)
 	{
 		reset_targets((*lst), b);
 		optimal = get_optimal_b(*lst, b);
+
+		printf("\n\nStack A:\n");
+		print_stack(*lst);
+		printf("Stack B:\n");
+		print_stack_targets(b);
 
 		while (b != optimal)
 		{
@@ -128,15 +108,15 @@ void	big_sort(t_stack_node **lst)
 					rotate_all(lst, &b);
 			//else if ((optimal->index != 0 && optimal->target->index != 0) && optimal->level > 0)
 					//reverse_rotate_all(lst, &b);
-			else if(optimal->level <= 0)
-				rotate(&b, 'b');
-			else
+			else if(optimal->level >= 0)
 				reverse_rotate(&b, 'b');
+			else
+				rotate(&b, 'b');
 		}
 
 		if ((*lst) == b->target && b == optimal)
 			push(&b, lst, 'a');
-		else if((*lst)->level <= 0)
+		else if((*lst)->level < 0)
 			rotate(lst, 'a');
 		else
 			reverse_rotate(lst, 'a');
@@ -144,7 +124,7 @@ void	big_sort(t_stack_node **lst)
 	marker = get_lowest_value_node(*lst);
 	while ((*lst) != get_lowest_value_node(*lst))
 	{
-		if (marker->level == 1)
+		if (marker->level >= 0)
 			reverse_rotate(lst, 'a');
 		else
 			rotate(lst, 'a');
@@ -171,8 +151,8 @@ int main(int argc, char **argv)
 				small_sort(&a);
 			else
 				big_sort(&a);
-			//printf("\n\nStack A/ END PROGRAM:\n");
-			//print_stack(a);
+			printf("\n\nStack A/ END PROGRAM:\n");
+			print_stack(a);
 			//printf("Stack B:\n");
 			//print_stack(b);
 			free_stacks(2, a, b);
@@ -182,3 +162,30 @@ int main(int argc, char **argv)
 }
 
 
+/*
+int	can_rotate(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_first(lst))
+	{
+		lst = lst->previous;
+		moves++;
+	}
+	return(moves);
+}
+
+int	can_reverse_rotate(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_last(lst))
+	{
+		lst = lst->next;
+		moves++;
+	}
+	return(moves);
+}
+*/

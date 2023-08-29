@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:33:59 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/25 12:09:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:55:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sort_4_5(t_stack_node **lst)
 	sort_3(lst);
 	while (b)
 	{
-		set_best_target(*lst, b);
+		reset_targets(*lst, b);
 		if ((*lst) == b->target)
 			push(&b, lst, 'a');
 		else if((*lst)->level < 0)

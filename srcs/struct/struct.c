@@ -6,20 +6,11 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 13:15:40 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:36:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-void	check_stack(t_stack_node *lst)
-{
-	if (is_sorted(lst))
-		ft_error("");
-	if (is_dupe(lst))
-		ft_error("Error");
-	re_factor(lst);
-}
 
 t_stack_node	*new_node(int value, int index)
 {
@@ -33,6 +24,15 @@ t_stack_node	*new_node(int value, int index)
 	new->next = NULL;
 	new->previous = NULL;
 	return (new);
+}
+
+void	check_stack(t_stack_node *lst)
+{
+	if (is_sorted(lst))
+		ft_error("");
+	if (is_dupe(lst))
+		ft_error("Error");
+	re_factor(lst);
 }
 
 t_stack_node *init_stack(char **args)
@@ -82,3 +82,74 @@ int ctoi(const char *nptr)
 	}
 	return (n * sign);
 }
+
+void	free_stack(t_stack_node *ptr)
+{
+	t_stack_node	*tmp;
+	t_stack_node	*curr;
+
+	if (!ptr)
+		ft_error("Error: failed free call.");
+	curr = ptr;
+	while (curr)
+	{
+		tmp = curr;
+		curr = curr->next;
+		free(tmp);
+	}
+	ptr = NULL;
+}
+
+/*
+void print_stack(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
+	int	size;
+
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
+	printf("+-------+----------+-------+--------+\n");
+	printf("| Value | Index    | Level | Cost   |\n");
+	printf("+-------+----------+-------+--------+\n");
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost);
+		tmp = tmp->next;
+		size += 1;
+	}
+	printf("+-------+----------+-------+--------+\n");
+	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
+}
+
+void print_stack_targets(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
+	int	size;
+
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
+	printf("+-------+----------+-------+--------+--------+\n");
+	printf("| Value | Index    | Level | Cost   | Target |\n");
+	printf("+-------+----------+-------+--------+--------+\n");
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		printf("| %-5d | %-8d | %-5d | %-6d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost, tmp->target->value);
+		tmp = tmp->next;
+		size += 1;
+	}
+	printf("+-------+----------+-------+--------+--------+\n");
+	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
+}
+
+*/
+

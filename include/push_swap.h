@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 18:57:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:34:41 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 /* SORT */
 
 void	small_sort(t_stack_node **lst);
+void	big_sort(t_stack_node **lst);
 
 /* STRUCT */
 
@@ -86,13 +87,15 @@ void			print_stack(t_stack_node *lst);
 t_stack_node	*new_node(int value, int index);
 t_stack_node 	*init_stack(char **args);
 int				stack_size(t_stack_node *lst);
-void			free_stacks(int count, ...);
+void			free_stack(t_stack_node *ptr);
 void 			re_index(t_stack_node *lst);
 void			re_factor(t_stack_node *lst);
+void			reset_targets(t_stack_node *lst_a, t_stack_node *lst_b);
+t_stack_node 	*get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b);
 t_stack_node	*get_first(t_stack_node *lst);
 t_stack_node	*get_last(t_stack_node *lst);
 t_stack_node	*get_lowest_value_node(t_stack_node *lst);
 t_stack_node	*get_highest_value_node(t_stack_node *lst);
-void			 set_best_target(t_stack_node *lst_a, t_stack_node *lst_b);
+
 
 #endif

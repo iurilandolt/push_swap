@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:49:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 18:58:19 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:29:26 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	reverse_rotate_all(t_stack_node **lst_a, t_stack_node **lst_b)
 {
 	reverse_rotate(lst_a, 'x');
 	reverse_rotate(lst_b, 'x');
-	ft_putendl_fd("rr", 1);
+	ft_putendl_fd("rrr", 1);
 }

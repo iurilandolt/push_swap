@@ -6,11 +6,28 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:47:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 14:18:08 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:37:13 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+int	stack_size(t_stack_node *lst)
+{
+	t_stack_node *tmp;
+	int	size;
+
+	if (!lst)
+		return(0);
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return(size);
+}
 
 int	calculate_moves(t_stack_node *lst)
 {
@@ -67,41 +84,12 @@ void	set_node_cost(t_stack_node *lst)
 	}
 }
 
-void	set_best_target(t_stack_node *lst_a, t_stack_node *lst_b)
-{
-	t_stack_node *marker;
-	int dif;
-	int min_dif;
-
-	marker = lst_a;
-	lst_b->target = get_lowest_value_node(lst_a);
-	//printf("begin func, %d target set to %d\n", lst_b->value, lst_b->target->value);
-	min_dif = INT_MAX;
-	while (marker)
-	{
-		dif = marker->value - lst_b->value;
-		if (marker->value > lst_b->value)
-		{
-
-			if (dif < min_dif)
-			{
-				min_dif = dif;
-				lst_b->target = marker;
-				//printf("inside loop, %d target set to %d\n", lst_b->value, lst_b->target->value);
-			}
-		}
-		marker = marker->next;
-	}
-}
-
 void	re_factor(t_stack_node *lst)
 {
 	re_index(lst);
 	set_node_level(lst);
 	set_node_cost(lst);
 }
-
-
 
 /*
 int	cw_moves(t_stack_node *lst)

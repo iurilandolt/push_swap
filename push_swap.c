@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/25 13:47:00 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:49:26 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,50 +79,51 @@ t_stack_node *get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b)
 		}
 		lst_b = lst_b->next;
 	}
-
 	return(optimal);
 }
 
+void	optimal_rotation(t_stack_node **lst_a, t_stack_node **lst_b)
+{
+	t_stack_node *optimal;
+
+	optimal = get_optimal_b(*lst_a, *lst_b);
+	while ((*lst_b) != optimal)
+	{
+
+		if(optimal->level <= 0)
+			rotate(lst_b, 'b');
+		else
+			reverse_rotate(lst_b, 'b');
+	}
+}
+
+void	standart_rotation(t_stack_node **lst_a, t_stack_node **lst_b)
+{
+		while (*lst_a != (*lst_b)->target)
+		{
+			if((*lst_b)->target->level <= 0)
+				rotate(lst_a, 'a');
+			else
+				reverse_rotate(lst_a, 'a');
+		}
+		push(lst_b, lst_a, 'a');
+}
 
 void	big_sort(t_stack_node **lst)
 {
 	t_stack_node *b;
 	t_stack_node *marker;
-	t_stack_node *optimal;
 
 	b = NULL;
 	while (stack_size(*lst) > 3)
 		push(lst, &b, 'b');
-
 	small_sort(lst);
 	while (b)
 	{
 		reset_targets((*lst), b);
-		optimal = get_optimal_b(*lst, b);
-		while (b != optimal)
-		{
-
-			//rotate_all(lst, &b);
-
-			//reverse_rotate_all(lst, &b);
-
-			if(optimal->level <= 0)
-				rotate(&b, 'b');
-			else
-				reverse_rotate(&b, 'b');
-		}
-
-
-		while ((*lst) != b->target)
-		{
-			if(b->target->level <= 0)
-				rotate(lst, 'a');
-			else
-				reverse_rotate(lst, 'a');
-		}
-		push(&b, lst, 'a');
+		optimal_rotation(lst, &b);
+		standart_rotation(lst, &b);
 	}
-
 	marker = get_lowest_value_node(*lst);
 	while ((*lst) != get_lowest_value_node(*lst))
 	{

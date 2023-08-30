@@ -1,0 +1,168 @@
+########## early input error versions
+
+int	input_error(char **array)
+{
+	int i;
+	int j;
+	int skip_i;
+	int skip_j;
+
+	i = 0;
+	skip_i = 0;
+	skip_j = 0;
+	while(array[i])
+	{
+		while (array[i][skip_i] == '0' || array[i][skip_i] == '+')
+			skip_i++;
+		j = i + 1;
+		if (!is_nbr(array[i]))
+			ft_error("not a number");
+
+		while(array[j])
+		{
+			while (array[j][skip_j] == '0' || array[j][skip_j] == '+' )
+				skip_j++;
+			if (ft_strcmp(&array[i][skip_i], &array[j][skip_j]) == 0)
+				ft_error("found dupe");
+			j++;
+			skip_j = 0;
+		}
+		i++;
+		skip_i = 0;
+	}
+	return (0);
+}
+
+int	input_error(char **array)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(array[i])
+	{
+		j = i + 1;
+		if (!is_nbr(array[i]))
+			ft_error("not a number");
+		while(array[j])
+		{
+			if (ft_strcmp(array[i], array[j]) == 0)
+				ft_error("found dupe");
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+########## early sort_3 function that was too long and relied on a user defined struct
+
+void	sort_3(t_stack_node **lst)
+{
+	int_tracker tmp;
+
+	tmp.top = (*lst)->value;
+	tmp.med = (*lst)->next->value;
+	tmp.bot = (*lst)->next->next->value;
+	if (tmp.top > tmp.med && tmp.med < tmp.bot && tmp.bot > tmp.top)
+		swap(*lst, 'a');
+	if (tmp.top > tmp.med && tmp.med > tmp.bot && tmp.bot < tmp.top)
+	{
+		swap(*lst, 'a');
+		reverse_rotate(lst, 'a');
+	}
+	if (tmp.top > tmp.med && tmp.med < tmp.bot && tmp.bot < tmp.top)
+		rotate(lst, 'a');
+	if (tmp.top < tmp.med && tmp.med > tmp.bot && tmp.bot > tmp.top)
+	{
+		swap(*lst, 'a');
+		rotate(lst, 'a');
+	}
+	if (tmp.top < tmp.med && tmp.med > tmp.bot && tmp.bot < tmp.top)
+		reverse_rotate(lst, 'a');
+}
+
+
+
+########## no need for these functions thaat return a node distance from the head or tail of a list
+
+int	cw_moves(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_first(lst))
+	{
+		lst = lst->previous;
+		moves++;
+	}
+	return(moves);
+}
+
+int	ccw_moves(t_stack_node *lst)
+{
+	int	moves;
+
+	moves = 0;
+	while(lst != get_last(lst))
+	{
+		lst = lst->next;
+		moves++;
+	}
+	return(moves);
+}
+
+########### print stack functions, useful but cannot be included in the project due to the use of printf
+
+void print_stack(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
+	int	size;
+
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
+	printf("+-------+----------+-------+--------+\n");
+	printf("| Value | Index    | Level | Cost   |\n");
+	printf("+-------+----------+-------+--------+\n");
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		printf("| %-5d | %-8d | %-5d | %-6d |\n",
+		tmp->value, tmp->index, tmp->level, tmp->cost);
+		tmp = tmp->next;
+		size += 1;
+	}
+	printf("+-------+----------+-------+--------+\n");
+	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
+}
+
+void print_stack_targets(t_stack_node *lst)
+{
+	t_stack_node	*tmp;
+	int	size;
+
+	if (!lst)
+	{
+		ft_putendl_fd("stack not found", 1);
+		return;
+	}
+	printf("+-------+----------+-------+--------+--------+\n");
+	printf("| Value | Index    | Level | Cost   | Target |\n");
+	printf("+-------+----------+-------+--------+--------+\n");
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		printf("| %-5d | %-8d | %-5d | %-6d | %-6d |\n",
+		tmp->value, tmp->index, tmp->level, tmp->cost, tmp->target->value);
+		tmp = tmp->next;
+		size += 1;
+	}
+	printf("+-------+----------+-------+--------+--------+\n");
+	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
+}
+

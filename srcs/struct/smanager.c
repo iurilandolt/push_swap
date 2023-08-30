@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:47:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/29 17:37:13 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:17:12 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	stack_size(t_stack_node *lst)
 {
-	t_stack_node *tmp;
-	int	size;
+	t_stack_node	*tmp;
+	int				size;
 
 	if (!lst)
-		return(0);
+		return (0);
 	tmp = lst;
 	size = 0;
 	while (tmp)
@@ -26,7 +26,7 @@ int	stack_size(t_stack_node *lst)
 		size++;
 		tmp = tmp->next;
 	}
-	return(size);
+	return (size);
 }
 
 int	calculate_moves(t_stack_node *lst)
@@ -36,7 +36,7 @@ int	calculate_moves(t_stack_node *lst)
 	moves = 0;
 	if (lst->level <= 0)
 	{
-		while(lst != get_first(lst))
+		while (lst != get_first(lst))
 		{
 			lst = lst->previous;
 			moves++;
@@ -44,14 +44,14 @@ int	calculate_moves(t_stack_node *lst)
 	}
 	if (lst->level > 0)
 	{
-		while(lst != get_last(lst))
+		while (lst != get_last(lst))
 		{
 			lst = lst->next;
 			moves++;
 		}
 		moves += 1;
 	}
-	return(moves);
+	return (moves);
 }
 
 void	set_node_level(t_stack_node *lst)
@@ -59,7 +59,7 @@ void	set_node_level(t_stack_node *lst)
 	int	size;
 
 	if (!lst)
-		return;
+		return ;
 	size = stack_size(lst);
 	while (lst)
 	{
@@ -69,15 +69,15 @@ void	set_node_level(t_stack_node *lst)
 			lst->level = 1;
 		else
 			lst->level = 0;
-		lst=lst->next;
+		lst = lst->next;
 	}
 }
 
 void	set_node_cost(t_stack_node *lst)
 {
 	if (!lst)
-		return;
-	while(lst)
+		return ;
+	while (lst)
 	{
 		lst->cost = calculate_moves(lst);
 		lst = lst->next;
@@ -90,31 +90,3 @@ void	re_factor(t_stack_node *lst)
 	set_node_level(lst);
 	set_node_cost(lst);
 }
-
-/*
-int	cw_moves(t_stack_node *lst)
-{
-	int	moves;
-
-	moves = 0;
-	while(lst != get_first(lst))
-	{
-		lst = lst->previous;
-		moves++;
-	}
-	return(moves);
-}
-
-int	ccw_moves(t_stack_node *lst)
-{
-	int	moves;
-
-	moves = 0;
-	while(lst != get_last(lst))
-	{
-		lst = lst->next;
-		moves++;
-	}
-	return(moves);
-}
-*/

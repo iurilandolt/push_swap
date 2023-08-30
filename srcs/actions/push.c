@@ -6,15 +6,15 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:54:29 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/21 14:39:14 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:32:41 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void push_node(t_stack_node **src, t_stack_node **dst)
+static void	push_node(t_stack_node **src, t_stack_node **dst)
 {
-	t_stack_node *new;
+	t_stack_node	*new;
 
 	if ((!*dst))
 		(*dst) = new_node((*src)->value, (*src)->index);
@@ -41,7 +41,7 @@ static void push_node(t_stack_node **src, t_stack_node **dst)
 void	push(t_stack_node **src, t_stack_node **dst, char target)
 {
 	if (!(*src))
-		return;
+		return ;
 	push_node(src, dst);
 	if (target == 'a')
 		ft_putendl_fd("pa", 1);

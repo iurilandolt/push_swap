@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:49:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/29 13:29:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:33:23 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate(t_stack_node **lst, char target)
 	t_stack_node	*last;
 
 	if (!(*lst) || !(*lst)->next)
-		return;
+		return ;
 	first = (*lst)->next;
 	first->previous = NULL;
 	last = get_last(*lst);
@@ -38,7 +38,7 @@ void	reverse_rotate(t_stack_node **lst, char target)
 	t_stack_node	*last;
 
 	if (!(*lst) || !(*lst)->next)
-		return;
+		return ;
 	last = get_last(*lst);
 	last->previous->next = NULL;
 	last->next = (*lst);

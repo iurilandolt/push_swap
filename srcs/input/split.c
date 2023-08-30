@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:18:14 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/03 17:26:54 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 13:21:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_isdelimeter(char str, char c)
 		return (0);
 }
 
-static char	**clean(char **array, int i)
+char	**clean(char **array, int i)
 {
 	while (--i >= 0)
 		free(*(array + i));
@@ -28,7 +28,7 @@ static char	**clean(char **array, int i)
 	return (NULL);
 }
 
-static int	substr_count(const char *str, char c)
+int	substr_count(const char *str, char c)
 {
 	int	count;
 

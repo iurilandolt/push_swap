@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:25:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/24 13:04:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:16:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_nbr(char *str)
 {
 	if (*str == '-' || *str == '+')
 		str++;
-	while(*str)
+	while (*str)
 	{
 		if (*str < 48 || *str > 57)
 			return (0);
@@ -35,7 +35,7 @@ int	is_nbr(char *str)
 
 int	is_sorted(t_stack_node *lst)
 {
-	t_stack_node *tmp;
+	t_stack_node	*tmp;
 
 	tmp = lst;
 	while (tmp && tmp->next)
@@ -53,7 +53,6 @@ int	is_dupe(t_stack_node *lst)
 	t_stack_node	*j;
 
 	i = lst;
-
 	while (i)
 	{
 		j = i->next;
@@ -70,10 +69,10 @@ int	is_dupe(t_stack_node *lst)
 
 int	input_error(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(array[i])
+	while (array[i])
 	{
 		if (!is_nbr(array[i]))
 			ft_error("Error");
@@ -81,60 +80,3 @@ int	input_error(char **array)
 	}
 	return (0);
 }
-
-/*
-int	input_error(char **array)
-{
-	int i;
-	int j;
-	int skip_i;
-	int skip_j;
-
-	i = 0;
-	skip_i = 0;
-	skip_j = 0;
-	while(array[i])
-	{
-		while (array[i][skip_i] == '0' || array[i][skip_i] == '+')
-			skip_i++;
-		j = i + 1;
-		if (!is_nbr(array[i]))
-			ft_error("not a number");
-
-		while(array[j])
-		{
-			while (array[j][skip_j] == '0' || array[j][skip_j] == '+' )
-				skip_j++;
-			if (ft_strcmp(&array[i][skip_i], &array[j][skip_j]) == 0)
-				ft_error("found dupe");
-			j++;
-			skip_j = 0;
-		}
-		i++;
-		skip_i = 0;
-	}
-	return (0);
-}
-
-int	input_error(char **array)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while(array[i])
-	{
-		j = i + 1;
-		if (!is_nbr(array[i]))
-			ft_error("not a number");
-		while(array[j])
-		{
-			if (ft_strcmp(array[i], array[j]) == 0)
-				ft_error("found dupe");
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-*/

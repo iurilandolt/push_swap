@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/29 17:36:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:19:04 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_stack(t_stack_node *lst)
 	re_factor(lst);
 }
 
-t_stack_node *init_stack(char **args)
+t_stack_node	*init_stack(char **args)
 {
 	t_stack_node	*first;
 	t_stack_node	*new;
@@ -43,9 +43,9 @@ t_stack_node *init_stack(char **args)
 	int				index;
 
 	index = -1;
-	while(args[++index])
+	while (args[++index])
 	{
-		if(index == 0)
+		if (index == 0)
 		{
 			first = new_node(ctoi(args[index]), index);
 			last = first;
@@ -59,13 +59,13 @@ t_stack_node *init_stack(char **args)
 		}
 	}
 	check_stack(first);
-	return(first);
+	return (first);
 }
 
-int ctoi(const char *nptr)
+int	ctoi(const char *nptr)
 {
-	long int n;
-	int sign;
+	long int	n;
+	int			sign;
 
 	sign = 1;
 	n = 0;
@@ -99,57 +99,3 @@ void	free_stack(t_stack_node *ptr)
 	}
 	ptr = NULL;
 }
-
-/*
-void print_stack(t_stack_node *lst)
-{
-	t_stack_node	*tmp;
-	int	size;
-
-	if (!lst)
-	{
-		ft_putendl_fd("stack not found", 1);
-		return;
-	}
-	printf("+-------+----------+-------+--------+\n");
-	printf("| Value | Index    | Level | Cost   |\n");
-	printf("+-------+----------+-------+--------+\n");
-	tmp = lst;
-	size = 0;
-	while (tmp)
-	{
-		printf("| %-5d | %-8d | %-5d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost);
-		tmp = tmp->next;
-		size += 1;
-	}
-	printf("+-------+----------+-------+--------+\n");
-	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
-}
-
-void print_stack_targets(t_stack_node *lst)
-{
-	t_stack_node	*tmp;
-	int	size;
-
-	if (!lst)
-	{
-		ft_putendl_fd("stack not found", 1);
-		return;
-	}
-	printf("+-------+----------+-------+--------+--------+\n");
-	printf("| Value | Index    | Level | Cost   | Target |\n");
-	printf("+-------+----------+-------+--------+--------+\n");
-	tmp = lst;
-	size = 0;
-	while (tmp)
-	{
-		printf("| %-5d | %-8d | %-5d | %-6d | %-6d |\n", tmp->value, tmp->index, tmp->level, tmp->cost, tmp->target->value);
-		tmp = tmp->next;
-		size += 1;
-	}
-	printf("+-------+----------+-------+--------+--------+\n");
-	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
-}
-
-*/
-

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:10:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/29 17:34:41 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:07:46 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <limits.h>
-# include <stdio.h>
-# include <stdarg.h>
 
 typedef struct s_stack_node
 {
@@ -29,24 +27,8 @@ typedef struct s_stack_node
 	int					cost;
 	struct s_stack_node	*next;
 	struct s_stack_node	*previous;
-	struct s_stack_node *target;
+	struct s_stack_node	*target;
 }	t_stack_node;
-
-typedef struct i_tracker
-{
-	int	top;
-	int	med;
-	int	bot;
-
-}int_tracker;
-
-typedef struct n_tracker
-{
-	t_stack_node *node_a;
-	t_stack_node *node_b;
-
-}node_tracker;
-
 
 /* ACTIONS */
 
@@ -69,33 +51,33 @@ int				is_dupe(t_stack_node *lst);
 int				ft_isdigit(int c);
 int				is_nbr(char *str);
 int				input_error(char **array);
-int 			ctoi(const char *nptr);
+int				ctoi(const char *nptr);
 
 char			**ft_split(const char *str, char c);
+char			**clean(char **array, int i);
+int				substr_count(const char *str, char c);
+t_stack_node	*handle_single_argv(char **value);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 
 /* SORT */
 
-void	small_sort(t_stack_node **lst);
-void	big_sort(t_stack_node **lst);
+void			small_sort(t_stack_node **lst);
+void			big_sort(t_stack_node **lst);
 
 /* STRUCT */
 
-void			print_stack(t_stack_node *lst);
-
 t_stack_node	*new_node(int value, int index);
-t_stack_node 	*init_stack(char **args);
+t_stack_node	*init_stack(char **args);
 int				stack_size(t_stack_node *lst);
 void			free_stack(t_stack_node *ptr);
-void 			re_index(t_stack_node *lst);
+void			re_index(t_stack_node *lst);
 void			re_factor(t_stack_node *lst);
 void			reset_targets(t_stack_node *lst_a, t_stack_node *lst_b);
-t_stack_node 	*get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b);
+t_stack_node	*get_optimal_b(t_stack_node *lst_a, t_stack_node *lst_b);
 t_stack_node	*get_first(t_stack_node *lst);
 t_stack_node	*get_last(t_stack_node *lst);
 t_stack_node	*get_lowest_value_node(t_stack_node *lst);
 t_stack_node	*get_highest_value_node(t_stack_node *lst);
-
 
 #endif

@@ -6,7 +6,7 @@
 #    By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/03 16:13:08 by rlandolt          #+#    #+#              #
-#    Updated: 2023/08/29 17:20:42 by rlandolt         ###   ########.fr        #
+#    Updated: 2023/08/30 15:56:18 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC = push_swap.c \
 	$(ACTIONS)/rotate.c \
 	$(SORT)/small_sort.c \
 	$(SORT)/big_sort.c \
-#	$(SORT)/big_sort.c \
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

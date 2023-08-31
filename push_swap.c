@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/30 15:30:41 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:18:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,3 @@ int	main(int argc, char **argv)
 	push_swap(argc, argv);
 	return (0);
 }
-/*
-int main(int argc, char **argv)
-{
-	t_stack_node	*a;
-
-	a = NULL;
-	argv++;
-    if (argc < 2)
-		ft_error("");
-    else
-    {
-        if (!input_error(argv))
-		{
-			a = init_stack(argv);
-			if (stack_size(a) <= 5)
-				small_sort(&a);
-			else
-				big_sort(&a);
-			free_stack(a);
-		}
-    }
-    return 0;
-}
-*/

@@ -166,3 +166,28 @@ void print_stack_targets(t_stack_node *lst)
 	printf("Stack index: %d\nStack size: %d\n", lst->index, size);
 }
 
+########## original main function before implementing split
+
+int main(int argc, char **argv)
+{
+	t_stack_node	*a;
+
+	a = NULL;
+	argv++;
+    if (argc < 2)
+		ft_error("");
+    else
+    {
+        if (!input_error(argv))
+		{
+			a = init_stack(argv);
+			if (stack_size(a) <= 5)
+				small_sort(&a);
+			else
+				big_sort(&a);
+			free_stack(a);
+		}
+    }
+    return 0;
+}
+

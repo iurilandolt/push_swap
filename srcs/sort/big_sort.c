@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:54:12 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/31 16:29:06 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:02:34 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	move_nodes(t_stack_node **lst_a, t_stack_node **lst_b,
 		else
 			reverse_rotate(lst_b, 'b');
 	}
-	while (*lst_a != (*lst_b)->target)
+	while (*lst_a != optimal->target)
 	{
-		if ((*lst_b)->target->level <= 0)
+		if (optimal->target->level <= 0)
 			rotate(lst_a, 'a');
 		else
 			reverse_rotate(lst_a, 'a');

@@ -80,11 +80,13 @@ you can use your `split()` function to turn it into a valid `**argv`;
 
 to keep things simple i decided to break down my validation process in two steps,
 the first step only checks if `**argv` is composed singularly of characters valid to later build a list/array of `ints`;
-          these would be only: `digits`, `+` and `-`.
+
+
+                        these would be only: `digits`, `+` and `-`.
 
 before the second step of my validation, looking for dupes and checking if the list is sorted,
 
-i first create my list, and populate it using atoi(), to convert each string of digits in **argv into a node with a value on my list;
+i first create my list, and populate it using `atoi()`, to convert each string of digits in **argv into a node with a value on my list;
 
 (it's easier to do this validation to a list of ints than to an array of strings (: )
 

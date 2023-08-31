@@ -82,7 +82,7 @@ to keep things simple i decided to break down my validation process in two steps
 the first step only checks if `**argv` is composed singularly of characters valid to later build a list/array of `ints`;
 
 
-                        these would be only: `digits`, `+` and `-`.
+these would be only: `digits`, `+` and `-`.
 
 before the second step of my validation, looking for dupes and checking if the list is sorted,
 

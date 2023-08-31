@@ -34,7 +34,7 @@ this push_swap's version complies with:
           less than 1300	-> 2
           less than 1500	-> 1
 
-`set of 500` (average 5901)
+`set of 500` (average 5696)
 
           less than 5500	-> 5
           less than 7000	-> 4

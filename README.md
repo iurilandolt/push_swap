@@ -255,11 +255,19 @@ Your list is sorted.
 
 ### a set > 5 values
 
-with sets larger than 5 values we`ll use the exact same logic as with 4/5 but we need to optimize how we set our targets.
+With sets larger than 5 values we`ll use the exact same logic as with 4/5 but we need to optimize how we set our targets.
 
 To achieve this we`ll have to rotate list B as well instead of only rotatin list A.
 
 We will also use simultaneous rotation whenever possible to lower the amount of actions we use to sort the list.
+
+For this algorithm we will have to find an `optimal` node in B. The optimal node will be the one with the lowest combined movement cost.
+
+This means that, for each node in B, we will calculate how many actions in would take to bring it and it`s `*target` to the top of the list.
+
+So we add the cost of each node in B to the cost of `b->target`, we find the cheapest `combined cost` and we set this node in B as our optimal node.
+
+We'll bring the optimal node and it's target to the top of the stacks, using `RR` or `RRR` whenever possible to move them together.
           
           void	optimal_rotation(t_stack_node **lst_a, t_stack_node **lst_b)
           {

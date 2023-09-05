@@ -263,7 +263,7 @@ We will also use simultaneous rotation whenever possible to lower the amount of 
 
 For this algorithm we will have to find an `optimal` node in B. The optimal node will be the one with the lowest combined movement cost.
 
-This means that, for each node in B, we will calculate how many actions in would take to bring it and it`s `*target` to the top of the list.
+This means that, for each node in B, we will calculate how many actions in would take to bring it and it's `*target` to the top of the list.
 
 So we add the cost of each node in B to the cost of `b->target`, we find the cheapest `combined cost` and we set this node in B as our optimal node.
 

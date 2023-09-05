@@ -207,7 +207,7 @@ after this we only need to sort the first two nodes.
           {
           	t_stack_node	*b;
           	t_stack_node	*marker;
-
+          
           	b = NULL;
           	while (stack_size(*lst) > 3)
           		push(lst, &b, 'b');
@@ -231,6 +231,19 @@ after this we only need to sort the first two nodes.
           			rotate(lst, 'a');
           	}
           }
+
+from here on out, for sets larger than 3 values, we`ll push enough nodes to list B until there are only 3 nodes left in list A.
+
+after this we can sort the 3 nodes in list A. Now we only need to find the best position in list A to push back the nodes in list B.
+
+we set a "best target" in list A for each node in list B. 
+
+the best target will be saved in our struct with the `t_stack_node *target`, this target should be a node with a larger `>` value but as close as possible.
+
+if there isn`t a node with a larger value stored in list A, the target will be the smallest node.
+
+e.g; if the value stored in B is 3 and if there is a node in A with the value 4, this node will be the ideal target.
+
 ### a set > 5 values
 
           void	big_sort(t_stack_node **lst)

@@ -16,7 +16,7 @@ The program outputs a series of moves to the standard output, each followed by a
 
 The printed set of moves should translate to the sorting of the list, as efficiently as possible with a limited amount of actions.
 
-this push_swap's version complies with:
+This push_swap's version complies with:
 
 `set of 3` :
 
@@ -78,15 +78,16 @@ you can use your `split()` function to turn it into a valid `**argv`;
           	return (a);
           }
 
-to keep things simple i decided to break down my validation process in two steps,
+To keep things simple i decided to break down my validation process in two steps,
 the first step only checks if `**argv` is composed singularly of characters valid to later build a list/array of `ints`;
 
 
-these would be only: `digits`, `+` and `-`.
+These would be only: `digits`, `+` and `-`.
 
-before the second step of my validation, looking for dupes and checking if the list is sorted,
+Before the second step of my validation, looking for dupes and checking if the list is sorted,
 
-i first create my list, and populate it using `atoi()`, to convert each string of digits in **argv into a node with a value on my list;
+
+ We first create a list, and populate it using `atoi()`, to convert each string of digits in **argv into a node with a value on my list;
 
 (it's easier to do this validation to a list of ints than to an array of strings (: )
 
@@ -111,7 +112,7 @@ i first create my list, and populate it using `atoi()`, to convert each string o
           	return (n * sign);
           }
 
-stack initialization:
+Stack initialization:
 
           t_stack_node	*init_stack(char **args)
           {
@@ -154,7 +155,7 @@ i opted for a doubly-linked-list struct as follows:
                     struct s_stack_node	*target;
           }
 
-to clarify, other than the necessary `next` & `previous` pointers needed for a doubly-linked-list,
+To clarify, other than the necessary `next` & `previous` pointers needed for a doubly-linked-list,
 
 each node has a
 
@@ -168,11 +169,11 @@ each node has a
 
 `target` : pointer to the ideal target for this node in opposite list.
 
-this seems overkill but it will make things a lot simpler when we get to sorting big sets of numbers.
+This seems overkill but it will make things a lot simpler when we get to sorting big sets of numbers.
 
 ## Sorting
 
-at this moment the approach to sorting is divided in X possible cases;
+At this moment the approach to sorting is divided in X possible cases;
 
 ### a set of 2 values
 
@@ -184,7 +185,7 @@ is the value of the first node > than the value of the second node?
 
 ### a set of 3 values
 
-in this case we need to find the position of the node with the highest value and get it to the tail of the list,
+In this case we need to find the position of the node with the highest value and get it to the tail of the list,
 
 after this we only need to sort the first two nodes.
 
@@ -202,6 +203,22 @@ after this we only need to sort the first two nodes.
           }
 
 ### a set of 4 or 5 values
+
+From here on out, for sets larger than 3 values, we`ll push enough nodes to list B until there are only 3 nodes left in list A.
+
+After this we can sort the 3 nodes in list A. Now we only need to find the best position in list A to push back the nodes in list B.
+
+We set a "best target" in list A for each node in list B. 
+
+The best target will be saved in our struct with the `t_stack_node *target`, this target should be a node with a `>` value but as close as possible to the value stored in B.
+
+e.g; If the value stored in B is 3 and if there is a node in A with the value 4, this node will be the ideal target.
+
+If there isn`t a node with a larger value stored in list A, the target will be the smallest node.
+
+After searching for an ideal target and rotating list A until that target is at the head of the list we push B, repeat this process until B is empty and rotate A until the node with the smallest value is at the head of the list.
+
+Your list is sorted.
 
           void	sort_4_5(t_stack_node **lst)
           {
@@ -231,23 +248,6 @@ after this we only need to sort the first two nodes.
           			rotate(lst, 'a');
           	}
           }
-
-from here on out, for sets larger than 3 values, we`ll push enough nodes to list B until there are only 3 nodes left in list A.
-
-after this we can sort the 3 nodes in list A. Now we only need to find the best position in list A to push back the nodes in list B.
-
-we set a "best target" in list A for each node in list B. 
-
-the best target will be saved in our struct with the `t_stack_node *target`, this target should be a node with a `>` value but as close as possible to the value stored in B.
-
-e.g; if the value stored in B is 3 and if there is a node in A with the value 4, this node will be the ideal target.
-
-if there isn`t a node with a larger value stored in list A, the target will be the smallest node.
-
-after searching for an ideal target and rotating list A until that target is at the head of the list we push B, repeat this process until B is empty and rotate A until the node with the smallest value is at the head of the list.
-
-your list is sorted.
-
 
 ### a set > 5 values
 

@@ -268,6 +268,10 @@ This means that, for each node in B, we will calculate how many actions in would
 So we add the cost of each node in B to the cost of `b->target`, we find the cheapest `combined cost` and we set this node in B as our optimal node.
 
 We'll bring the optimal node and it's target to the top of the stacks, using `RR` or `RRR` whenever possible to move them together.
+
+Just like before, repeat this process until B is empty, find the lowest value node in list A and bring it to the top.
+
+Job done. :)
           
           void	optimal_rotation(t_stack_node **lst_a, t_stack_node **lst_b)
           {

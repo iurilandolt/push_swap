@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:43:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/30 17:18:28 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:11:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	push_swap(int count, char **value)
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
-		ft_error("");
+		return (0);
 	push_swap(argc, argv);
 	return (0);
 }

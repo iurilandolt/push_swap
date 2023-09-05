@@ -216,7 +216,11 @@ e.g; If the value stored in B is 3 and if there is a node in A with the value 4,
 
 If there isn`t a node with a larger value stored in list A, the target will be the smallest node.
 
-After searching for an ideal target and rotating list A until that target is at the head of the list we push B, repeat this process until B is empty and rotate A until the node with the smallest value is at the head of the list.
+After searching for an ideal target and rotating list A until that target is at the head of the list we push B, repeat this process until B is empty.
+
+Now we only need to find the node with the lowest value on our list and bring it to the top, if this node is on the first half of the list we will rotate, if it is on the second half we will reverse rotate.
+this is why we have the `int level` variable in our struct, it tells us if the node is in the first or second half of the list `-1` means first half `1` means second half, `0` is the center of the list, but we consider this position to be 
+the same as `-1`, because its cheaper to rotate than it is to reverse rotate.
 
 Your list is sorted.
 
@@ -251,21 +255,41 @@ Your list is sorted.
 
 ### a set > 5 values
 
+with sets larger than 5 values we`ll use the exact same logic as with 4/5 but we need to optimize how we set our targets.
+
+To achieve this we`ll have to rotate list B as well instead of only rotatin list A.
+
+We will also use simultaneous rotation whenever possible to lower the amount of actions we use to sort the list.
+          
+          void	optimal_rotation(t_stack_node **lst_a, t_stack_node **lst_b)
+          {
+          	t_stack_node	*optimal;
+          
+          	reset_targets(*lst_a, *lst_b);
+          	optimal = get_optimal_b(*lst_a, *lst_b);
+          	while (*lst_a != optimal->target || *lst_b != optimal)
+          	{
+          		if (optimal->level <= 0 && optimal->target->level <= 0)
+          			rotate_all(lst_a, lst_b);
+          		else if (optimal->level > 0 && optimal->target->level > 0)
+          			reverse_rotate_all(lst_a, lst_b);
+          		else
+          			move_nodes(lst_a, lst_b, optimal);
+          	}
+          	push(lst_b, lst_a, 'a');
+          }
+          
           void	big_sort(t_stack_node **lst)
           {
           	t_stack_node	*b;
           	t_stack_node	*marker;
-
+          
           	b = NULL;
           	while (stack_size(*lst) > 3)
           		push(lst, &b, 'b');
           	small_sort(lst);
           	while (b)
-          	{
-          		reset_targets((*lst), b);
-          		move_b(lst, &b);
-          		move_a(lst, &b);
-          	}
+          		optimal_rotation(lst, &b);
           	marker = get_lowest_value_node(*lst);
           	while ((*lst) != get_lowest_value_node(*lst))
           	{

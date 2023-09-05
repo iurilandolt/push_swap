@@ -201,7 +201,7 @@ after this we only need to sort the first two nodes.
           		swap(*lst, 'a');
           }
 
-### a set of 4/5 values
+### a set of 4 or 5 values
 
           void	sort_4_5(t_stack_node **lst)
           {
@@ -238,11 +238,16 @@ after this we can sort the 3 nodes in list A. Now we only need to find the best 
 
 we set a "best target" in list A for each node in list B. 
 
-the best target will be saved in our struct with the `t_stack_node *target`, this target should be a node with a larger `>` value but as close as possible.
+the best target will be saved in our struct with the `t_stack_node *target`, this target should be a node with a `>` value but as close as possible to the value stored in B.
+
+e.g; if the value stored in B is 3 and if there is a node in A with the value 4, this node will be the ideal target.
 
 if there isn`t a node with a larger value stored in list A, the target will be the smallest node.
 
-e.g; if the value stored in B is 3 and if there is a node in A with the value 4, this node will be the ideal target.
+after searching for an ideal target and rotating list A until that target is at the head of the list we push B, repeat this process until B is empty and rotate A until the node with the smallest value is at the head of the list.
+
+your list is sorted.
+
 
 ### a set > 5 values
 

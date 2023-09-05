@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:49:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/30 16:19:04 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:36:10 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ t_stack_node	*new_node(int value, int index)
 	return (new);
 }
 
+/*error in is_sorted verification ,
+should return instead of printing \n with the ft_error function*/
+
 void	check_stack(t_stack_node *lst)
 {
 	if (is_sorted(lst))
-		ft_error("");
+		return ;
 	if (is_dupe(lst))
 		ft_error("Error");
 	re_factor(lst);

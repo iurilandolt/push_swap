@@ -191,3 +191,21 @@ int main(int argc, char **argv)
     return 0;
 }
 
+int	main(int argc, char **argv)
+{
+	if (argc < 2)
+		return (0);
+	push_swap(argc, argv);
+	return (0);
+}
+
+void	check_stack(t_stack_node *lst)
+{
+	if (is_sorted(lst))
+		exit(0);
+	if (is_dupe(lst))
+		ft_error("Error");
+	re_factor(lst);
+}
+
+2147483646 -636467450 -1868185844 -1884651805 -1552064205 -676237717 -1949747357 -337131814 -1837869616 -433351131

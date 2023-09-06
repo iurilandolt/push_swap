@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:02:06 by rlandolt          #+#    #+#             */
-/*   Updated: 2023/08/30 15:52:37 by rlandolt         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:40:33 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void	set_best_target(t_stack_node *lst_a, t_stack_node *lst_b)
 {
 	t_stack_node	*marker;
-	int				dif;
-	int				min_dif;
+	long			dif;
+	long			min_dif;
 
 	marker = lst_a;
 	lst_b->target = get_lowest_value_node(lst_a);
-	min_dif = INT_MAX;
+	min_dif = LONG_MAX;
 	while (marker)
 	{
 		dif = marker->value - lst_b->value;
-		if (marker->value > lst_b->value)
+		if (marker->value > lst_b->value && dif > 0)
 		{
 			if (dif < min_dif)
 			{

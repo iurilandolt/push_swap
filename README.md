@@ -22,11 +22,11 @@ This push_swap's version complies with:
 
           max 2
 
-`set of 5` : (average 8)
+`set of 5` : 
 
           max 12
 
-`set of 100` (average 643)
+`set of 100` 
 
           less than 700	-> 5
           less than 900	-> 4
@@ -34,7 +34,7 @@ This push_swap's version complies with:
           less than 1300	-> 2
           less than 1500	-> 1
 
-`set of 500` (average 5696)
+`set of 500` 
 
           less than 5500	-> 5
           less than 7000	-> 4
